@@ -9,11 +9,32 @@ export default function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   const navLinks = [
-    { href: "/", label: "Home" },
-    { href: "/about", label: "About" },
-    { href: "/gallery", label: "Gallery" },
-    { href: "/contact", label: "Contact" },
+    { href: "#hero", label: "Home" },
+    { href: "#gallery", label: "Gallery" },
+    { href: "#attractions", label: "Attractions" },
+    { href: "#rooms", label: "Rooms" },
+    { href: "#contact", label: "Contact" },
+    { href: "#footer", label: "About" },
   ];
+
+  const handleSmoothScroll = (
+    e: React.MouseEvent<HTMLAnchorElement>,
+    href: string
+  ) => {
+    e.preventDefault();
+    const targetId = href.replace("#", "");
+    const targetElement = document.getElementById(targetId);
+
+    if (targetElement) {
+      targetElement.scrollIntoView({
+        behavior: "smooth",
+        block: "start",
+      });
+    }
+
+    // Close mobile menu if open
+    setIsMenuOpen(false);
+  };
 
   return (
     <nav className="absolute top-0 left-0 right-0 z-50">
@@ -40,13 +61,14 @@ export default function Navbar() {
           <div className="hidden md:block">
             <div className="ml-10 flex items-baseline space-x-8">
               {navLinks.map((link) => (
-                <Link
+                <a
                   key={link.href}
                   href={link.href}
-                  className="text-white hover:text-orange-600 px-3 py-2 text-sm font-medium transition-colors duration-200"
+                  onClick={(e) => handleSmoothScroll(e, link.href)}
+                  className="text-white hover:text-orange-600 px-3 py-2 text-sm font-medium transition-colors duration-200 cursor-pointer"
                 >
                   {link.label}
-                </Link>
+                </a>
               ))}
               <Link
                 href="/book"
@@ -80,14 +102,14 @@ export default function Navbar() {
         <div className="md:hidden">
           <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3 bg-white/90 backdrop-blur-md shadow-lg border-b border-white/20">
             {navLinks.map((link) => (
-              <Link
+              <a
                 key={link.href}
                 href={link.href}
-                className="text-gray-900 hover:text-orange-600 block px-3 py-2 text-base font-medium"
-                onClick={() => setIsMenuOpen(false)}
+                onClick={(e) => handleSmoothScroll(e, link.href)}
+                className="text-gray-900 hover:text-orange-600 block px-3 py-2 text-base font-medium cursor-pointer"
               >
                 {link.label}
-              </Link>
+              </a>
             ))}
             <Link
               href="/book"

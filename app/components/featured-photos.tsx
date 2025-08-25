@@ -200,7 +200,7 @@ export default function FeaturedPhotos() {
         )}
       </div>
       {/* Other Photos Grid */}
-      <div className="relative z-10 bg-gradient-to-b from-transparent to-gray-950 py-20">
+      <div className="relative z-10  bg-amber-900 py-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           {/* Section Header */}
           <div className="text-center mb-16">
@@ -228,7 +228,7 @@ export default function FeaturedPhotos() {
                 >
                   {/* Image Container */}
                   <div
-                    className="aspect-[16/10] relative overflow-hidden"
+                    className="w-full lg:w-[800px] aspect-[16/10] relative overflow-hidden"
                     onClick={() => nextImage(photo.id, totalImages)}
                   >
                     <Image

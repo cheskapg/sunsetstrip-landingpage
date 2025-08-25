@@ -108,10 +108,10 @@ export default function Rooms() {
   ];
 
   return (
-    <section className="min-h-screen py-16 bg-gray-50 flex items-center">
+    <section className="min-h-screen pt-5 pb-16 bg-gray-50 flex items-center">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
         {/* Header */}
-        <div className="text-center mb-16">
+        <div className="text-center mb-12">
           <div className="inline-flex items-center px-4 py-2 bg-orange-100 rounded-full mb-6">
             <HomeIcon className="h-5 w-5 text-orange-600 mr-2" />
             <span className="text-orange-600 font-medium text-sm">
@@ -124,12 +124,11 @@ export default function Rooms() {
           </h2>
 
           <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-            We have limited rooms available. Book early to secure your
-            beachfront getaway experience.
+            Book early to secure your beachfront getaway experience.
           </p>
 
           {/* Important Notice */}
-          <div className="mt-8 p-4 bg-orange-50 border border-orange-200 rounded-lg max-w-2xl mx-auto">
+          <div className="mt-3 p-4 bg-orange-50 border border-orange-200 rounded-lg max-w-2xl mx-auto">
             <p className="text-orange-800 text-sm font-medium">
               ⚠️ Limited Availability: Only a few rooms available at the moment.
               Book now to avoid disappointment!

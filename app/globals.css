@@ -1,5 +1,15 @@
 @import "tailwindcss";
-
+@layer utilities {
+  .text-stroke {
+    -webkit-text-stroke: 1px rgb(189, 189, 189);
+  }
+  .text-stroke-white {
+    -webkit-text-stroke: 1px white;
+  }
+  .text-stroke-2 {
+    -webkit-text-stroke-width: 2px;
+  }
+}
 /* Smooth scrolling for the entire page */
 html {
   scroll-behavior: smooth;

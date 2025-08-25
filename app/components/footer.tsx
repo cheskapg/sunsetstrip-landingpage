@@ -142,7 +142,7 @@ export default function Footer() {
               <div className="flex space-x-4">
                 {/* Facebook */}
                 <a
-                  href="https://facebook.com/sunsetstrip" // Replace with actual Facebook URL
+                  href="https://www.facebook.com/SunsetStripChillandDine" // Replace with actual Facebook URL
                   target="_blank"
                   rel="noopener noreferrer"
                   className="w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center hover:bg-blue-600 transition-colors duration-300 group"

@@ -12,39 +12,39 @@ export default function FeaturedPhotos() {
     },
     {
       id: 2,
-      title: "Luxury Suite",
+      title: "Rooms",
       description: "Our premium suite with panoramic city views",
       imageUrl: "/api/placeholder/400/300",
       category: "Rooms",
     },
     {
       id: 3,
-      title: "Rooftop Pool",
+      title: "Amenities",
       description: "Infinity pool overlooking the Hollywood Hills",
       imageUrl: "/api/placeholder/400/300",
       category: "Amenities",
     },
-    {
-      id: 4,
-      title: "Fine Dining",
-      description: "World-class cuisine in our signature restaurant",
-      imageUrl: "/api/placeholder/400/300",
-      category: "Dining",
-    },
-    {
-      id: 5,
-      title: "Spa & Wellness",
-      description: "Rejuvenate in our luxurious spa facilities",
-      imageUrl: "/api/placeholder/400/300",
-      category: "Wellness",
-    },
-    {
-      id: 6,
-      title: "Hollywood Lights",
-      description: "The glittering cityscape from your window",
-      imageUrl: "/api/placeholder/400/300",
-      category: "Views",
-    },
+    // {
+    //   id: 4,
+    //   title: "RestoBar",
+    //   description: "World-class cuisine in our signature restaurant",
+    //   imageUrl: "/api/placeholder/400/300",
+    //   category: "Dining",
+    // },
+    // {
+    //   id: 5,
+    //   title: "Spa & Wellness",
+    //   description: "Rejuvenate in our luxurious spa facilities",
+    //   imageUrl: "/api/placeholder/400/300",
+    //   category: "Wellness",
+    // },
+    // {
+    //   id: 6,
+    //   title: "Hollywood Lights",
+    //   description: "The glittering cityscape from your window",
+    //   imageUrl: "/api/placeholder/400/300",
+    //   category: "Views",
+    // },
   ];
 
   return (

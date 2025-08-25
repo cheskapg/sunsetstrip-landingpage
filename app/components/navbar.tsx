@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
 
 export default function Navbar() {
@@ -15,13 +16,24 @@ export default function Navbar() {
   ];
 
   return (
-    <nav className="bg-white shadow-md sticky top-0 z-50">
+    <nav className="absolute top-0 left-0 right-0 z-50">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
           {/* Logo */}
           <div className="flex-shrink-0">
-            <Link href="/" className="text-2xl font-bold text-gray-900">
-              Sunset Strip
+            <Link href="/" className="flex items-center">
+              <div className="flex items-center space-x-2">
+                {/* Logo Image */}
+                <Image
+                  src="/assets/images/sunsetStripLogo.jpg"
+                  alt="Sunset Strip Logo"
+                  width={120}
+                  height={40}
+                  className="h-10 w-auto object-contain"
+                  priority
+                />
+                <p className="text-2xl font-bold text-white">Sunset Strip</p>
+              </div>
             </Link>
           </div>
 
@@ -32,7 +44,7 @@ export default function Navbar() {
                 <Link
                   key={link.href}
                   href={link.href}
-                  className="text-gray-900 hover:text-orange-600 px-3 py-2 text-sm font-medium transition-colors duration-200"
+                  className="text-white hover:text-orange-600 px-3 py-2 text-sm font-medium transition-colors duration-200"
                 >
                   {link.label}
                 </Link>
@@ -67,7 +79,7 @@ export default function Navbar() {
       {/* Mobile Menu */}
       {isMenuOpen && (
         <div className="md:hidden">
-          <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3 bg-white shadow-lg">
+          <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3 bg-white/90 backdrop-blur-md shadow-lg border-b border-white/20">
             {navLinks.map((link) => (
               <Link
                 key={link.href}

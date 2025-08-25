@@ -63,12 +63,11 @@ export default function Rooms() {
           </div>
 
           <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
-            Luxury Rooms & Suites
+            Rooms & Suites
           </h2>
 
           <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-            Choose from our collection of thoughtfully designed rooms and
-            suites, each offering unparalleled comfort and stunning views.
+            Choose from our collection of thoughtfully designed rooms each offering unparalleled comfort and stunning views.
           </p>
         </div>
 

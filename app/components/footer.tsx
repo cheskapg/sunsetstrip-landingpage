@@ -52,8 +52,8 @@ export default function Footer() {
               <div className="flex items-start">
                 <MapPinIcon className="h-5 w-5 text-orange-400 mt-0.5 mr-3 flex-shrink-0" />
                 <div>
-                  <p className="text-gray-300">8221 Sunset Blvd</p>
-                  <p className="text-gray-300">West Hollywood, CA 90046</p>
+                  <p className="text-gray-300">Purok 3, Tambis, Sangi, Madridejos, Alegria</p>
+                  <p className="text-gray-300">  Cebu 8030 Philippines</p>
                 </div>
               </div>
 

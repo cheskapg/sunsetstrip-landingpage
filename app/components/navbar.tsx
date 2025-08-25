@@ -58,12 +58,12 @@ export default function Navbar() {
   return (
     <>
       {/* Top Bar with Logo and Menu Button */}
-      <nav className="fixed top-0 left-0 right-0 z-40 blur-effect bg-black/30 backdrop-blur-xs ">
+      <nav className={`fixed top-0 left-0 right-0 z-40 lg:blur-effect lg:bg-black/30 lg:backdrop-blur-xs `}>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center h-16 sm:h-20">
             {/* Logo */}
             <div className="flex-shrink-0">
-              <Link href="/" className="flex items-center">
+              <Link href="/" className="hidden lg:flex items-center">
                 <Image
                   src="/assets/images/sunsetStripBoardLogo-2.png"
                   alt="Sunset Strip Logo"

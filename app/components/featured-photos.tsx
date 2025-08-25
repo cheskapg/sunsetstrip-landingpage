@@ -193,12 +193,12 @@ export default function FeaturedPhotos() {
             </div>
 
             {/* Scroll Indicator */}
-            <div className="absolute bottom-8 right-8 flex flex-col items-center text-white/60">
+            {/* <div className="absolute bottom-8 right-8 flex flex-col items-center text-white/60">
               <span className="text-sm font-medium mb-2 rotate-90 origin-center whitespace-nowrap">
                 Scroll to explore
               </span>
               <div className="w-px h-16 bg-gradient-to-b from-white/60 to-transparent"></div>
-            </div>
+            </div> */}
           </>
         )}
       </div>

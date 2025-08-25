@@ -50,7 +50,7 @@ export default function Contact() {
         subject: "",
         message: "",
       });
-    } catch (error) {
+    } catch {
       setSubmitStatus("error");
     } finally {
       setIsSubmitting(false);
@@ -113,8 +113,8 @@ export default function Contact() {
             </span>
           </h2>
           <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-            We're here to help make your stay unforgettable. Reach out to us for
-            reservations, inquiries, or any assistance you need.
+            We&apos;re here to help make your stay unforgettable. Reach out to
+            us for reservations, inquiries, or any assistance you need.
           </p>
         </div>
 
@@ -290,7 +290,7 @@ export default function Contact() {
                   <div className="bg-green-50 border border-green-200 text-green-700 px-4 py-3 rounded-lg">
                     <p className="font-medium">Message sent successfully!</p>
                     <p className="text-sm">
-                      We'll get back to you within 24 hours.
+                      We&apos;ll get back to you within 24 hours.
                     </p>
                   </div>
                 )}
@@ -325,7 +325,8 @@ export default function Contact() {
             </div>
             <div className="mt-4 flex items-center justify-between">
               <p className="text-gray-600 text-sm">
-                Purok 3, Tambis, Sangi, Madridejos, Alegria, Cebu 8030 Philippines
+                Purok 3, Tambis, Sangi, Madridejos, Alegria, Cebu 8030
+                Philippines
               </p>
               <a
                 href="https://maps.google.com/?q=Sunset+Strip+Beach+Resort"
@@ -346,7 +347,7 @@ export default function Contact() {
               Ready to Book Your Stay?
             </h3>
             <p className="text-lg mb-6 opacity-90">
-              Don't wait! Experience the magic of Sunset Strip Beach Resort
+              Don&apos;t wait! Experience the magic of Sunset Strip Beach Resort
               today.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">

@@ -1,33 +1,42 @@
-'use client'
+"use client";
 import Image from "next/image";
-import { PhotoIcon, ChevronLeftIcon, ChevronRightIcon } from "@heroicons/react/24/outline";
-import { useState } from "react";
+import {
+  PhotoIcon,
+  ChevronLeftIcon,
+  ChevronRightIcon,
+} from "@heroicons/react/24/outline";
+import { useState, useEffect } from "react";
 
 export default function FeaturedPhotos() {
-  const [currentImageIndex, setCurrentImageIndex] = useState<{[key: number]: number}>({});
+  const [currentImageIndex, setCurrentImageIndex] = useState<{
+    [key: number]: number;
+  }>({});
+  const [hoveredCard, setHoveredCard] = useState<number | null>(null);
 
   const photos = [
     {
       id: 1,
       title: "Sunset View",
-      description: "Breathtaking sunset from our rooftop terrace",
+      description:
+        "Relax and enjoy a warm, calming sunset right from our restaurant.",
       imageUrl: [
-        "/assets/images/sunset skies.jpg",
+        // "/assets/images/sunset skies.jpg",
         "/assets/images/sunset skies 2.jpg",
         "/assets/images/sunset skies 3.jpg",
-        "/assets/images/sunset yellow.jpg"
+        "/assets/images/sunset yellow.jpg",
       ],
       category: "Views",
     },
     {
       id: 2,
       title: "Rooms",
-      description: "Our premium suite with panoramic city views",
+      description:
+        "Comfortable and budget-friendly rooms designed for families and couples. Simple and relaxing.",
       imageUrl: [
         "/assets/images/room 1/FamilyRoom1-1.jpg",
         "/assets/images/room 2/FamilyRoom2-1.jpg",
         "/assets/images/room 2/FamilyRoom2-2.jpg",
-        "/assets/images/room 3/CoupleRoom3-1.jpg"
+        "/assets/images/room 3/CoupleRoom3-1.jpg",
       ],
       category: "Rooms",
     },
@@ -39,11 +48,11 @@ export default function FeaturedPhotos() {
         "/assets/images/Kayak.jpg",
         "/assets/images/SummerShore.jpg",
         "/assets/images/Shoreline.jpg",
-        "/assets/images/FeatureGirl.jpg"
+        "/assets/images/FeatureGirl.jpg",
       ],
       category: "Amenities",
     },
-      // {
+    // {
     //   id: 4,
     //   title: "RestoBar",
     //   description: "World-class cuisine in our signature restaurant",
@@ -64,25 +73,41 @@ export default function FeaturedPhotos() {
     //   imageUrl: "/api/placeholder/400/300",
     //   category: "Views",
     // },
-
   ];
 
   const nextImage = (photoId: number, maxIndex: number) => {
-    setCurrentImageIndex(prev => ({
+    setCurrentImageIndex((prev) => ({
       ...prev,
-      [photoId]: ((prev[photoId] || 0) + 1) % maxIndex
+      [photoId]: ((prev[photoId] || 0) + 1) % maxIndex,
     }));
   };
 
   const prevImage = (photoId: number, maxIndex: number) => {
-    setCurrentImageIndex(prev => ({
+    setCurrentImageIndex((prev) => ({
       ...prev,
-      [photoId]: ((prev[photoId] || 0) - 1 + maxIndex) % maxIndex
+      [photoId]: ((prev[photoId] || 0) - 1 + maxIndex) % maxIndex,
     }));
   };
-  
+
+  // Auto-cycle images on hover
+  useEffect(() => {
+    if (hoveredCard === null) return;
+
+    const photo = photos.find((p) => p.id === hoveredCard);
+    if (!photo || photo.imageUrl.length <= 1) return;
+
+    const interval = setInterval(() => {
+      setCurrentImageIndex((prev) => ({
+        ...prev,
+        [hoveredCard]: ((prev[hoveredCard] || 0) + 1) % photo.imageUrl.length,
+      }));
+    }, 1500); // Change image every 1.5 seconds
+
+    return () => clearInterval(interval);
+  }, [hoveredCard, photos]);
+
   return (
-    <section className="py-20 bg-gray-50">
+    <section className="py-16 bg-gray-50">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
         <div className="text-center mb-16">
@@ -106,13 +131,15 @@ export default function FeaturedPhotos() {
           {photos.map((photo, index) => {
             const currentIndex = currentImageIndex[photo.id] || 0;
             const totalImages = photo.imageUrl.length;
-            
+
             return (
               <div
                 key={photo.id}
                 className={`group relative overflow-hidden rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2 ${
                   index === 0 ? "md:col-span-2 lg:col-span-1" : ""
                 }`}
+                onMouseEnter={() => setHoveredCard(photo.id)}
+                onMouseLeave={() => setHoveredCard(null)}
               >
                 {/* Image Carousel */}
                 <div className="aspect-[4/3] relative overflow-hidden">
@@ -148,11 +175,16 @@ export default function FeaturedPhotos() {
                       {photo.imageUrl.map((_, imgIndex) => (
                         <button
                           key={imgIndex}
-                          onClick={() => setCurrentImageIndex(prev => ({ ...prev, [photo.id]: imgIndex }))}
+                          onClick={() =>
+                            setCurrentImageIndex((prev) => ({
+                              ...prev,
+                              [photo.id]: imgIndex,
+                            }))
+                          }
                           className={`w-2 h-2 rounded-full transition-all duration-200 ${
-                            imgIndex === currentIndex 
-                              ? 'bg-white scale-125' 
-                              : 'bg-white/50 hover:bg-white/75'
+                            imgIndex === currentIndex
+                              ? "bg-white scale-125"
+                              : "bg-white/50 hover:bg-white/75"
                           }`}
                         />
                       ))}

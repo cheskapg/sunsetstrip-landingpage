@@ -5,6 +5,8 @@ import {
   EnvelopeIcon,
   ClockIcon,
 } from "@heroicons/react/24/outline";
+import FacebookIcon from "./icons/FacebookIcon";
+import InstagramIcon from "./icons/InstagramIcon";
 
 export default function Footer() {
   const navigationLinks = [
@@ -42,8 +44,8 @@ export default function Footer() {
                 Sunset Strip
               </h3>
               <p className="text-gray-400 mt-2">
-                Experience luxury in the heart of Los Angeles. Where every
-                moment becomes a cherished memory.
+                Experience an affordable escape in the heart of Alegria. Where
+                every moment becomes a cherished memory.
               </p>
             </div>
 
@@ -52,8 +54,10 @@ export default function Footer() {
               <div className="flex items-start">
                 <MapPinIcon className="h-5 w-5 text-orange-400 mt-0.5 mr-3 flex-shrink-0" />
                 <div>
-                  <p className="text-gray-300">Purok 3, Tambis, Sangi, Madridejos, Alegria</p>
-                  <p className="text-gray-300">  Cebu 8030 Philippines</p>
+                  <p className="text-gray-300">
+                    Purok 3, Tambis, Sangi, Madridejos, Alegria
+                  </p>
+                  <p className="text-gray-300"> Cebu 8030 Philippines</p>
                 </div>
               </div>
 
@@ -136,23 +140,24 @@ export default function Footer() {
             <div>
               <p className="text-gray-400 text-sm mb-4">Follow us</p>
               <div className="flex space-x-4">
+                {/* Facebook */}
                 <a
-                  href="#"
-                  className="w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center hover:bg-orange-600 transition-colors duration-300"
+                  href="https://facebook.com/sunsetstrip" // Replace with actual Facebook URL
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center hover:bg-blue-600 transition-colors duration-300 group"
                 >
-                  <span className="text-sm font-bold">fb</span>
+                  <FacebookIcon className="w-5 h-5 text-white group-hover:scale-110 transition-transform duration-300" />
                 </a>
+
+                {/* Instagram */}
                 <a
-                  href="#"
-                  className="w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center hover:bg-orange-600 transition-colors duration-300"
+                  href="https://instagram.com/sunsetstrip" // Replace with actual Instagram URL
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center hover:bg-gradient-to-r hover:from-purple-500 hover:via-pink-500 hover:to-orange-500 transition-all duration-300 group"
                 >
-                  <span className="text-sm font-bold">ig</span>
-                </a>
-                <a
-                  href="#"
-                  className="w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center hover:bg-orange-600 transition-colors duration-300"
-                >
-                  <span className="text-sm font-bold">tw</span>
+                  <InstagramIcon className="w-5 h-5 text-white group-hover:scale-110 transition-transform duration-300" />
                 </a>
               </div>
             </div>

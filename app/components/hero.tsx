@@ -1,7 +1,28 @@
 import Link from "next/link";
-import { ArrowRightIcon } from "@heroicons/react/24/outline";
+import FacebookIcon from "./icons/FacebookIcon";
+import InstagramIcon from "./icons/InstagramIcon";
 
 export default function Hero() {
+  const socialLinks = [
+    {
+      name: "Facebook",
+      url: "https://www.facebook.com/SunsetStripChillandDine", // Replace with actual Facebook URL
+      hoverColor: "hover:bg-blue-600",
+      icon: (
+        <FacebookIcon className="w-6 h-6 group-hover:scale-110 transition-transform duration-300" />
+      ),
+    },
+    {
+      name: "Instagram",
+      url: "https://www.instagram.com/sunsetstripbeachresort/", // Replace with actual Instagram URL
+      hoverColor:
+        "hover:bg-gradient-to-r hover:from-purple-500 hover:via-pink-500 hover:to-orange-500",
+      icon: (
+        <InstagramIcon className="w-6 h-6 group-hover:scale-110 transition-transform duration-300" />
+      ),
+    },
+  ];
+
   return (
     <section className="relative min-h-screen flex items-center justify-center">
       {/* Background Image */}
@@ -19,7 +40,7 @@ export default function Hero() {
         </div>
       </div>
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-        <div className="space-y-8">
+        <div className="mt-20 space-y-8">
           {/* Badge */}
           {/* <div className="inline-flex items-center px-4 py-2 bg-white/90 backdrop-blur-sm rounded-full shadow-lg border border-white/30">
             <span className="text-orange-600 font-medium text-sm">
@@ -45,27 +66,45 @@ export default function Hero() {
           <div className="flex flex-wrap justify-center gap-6 text-sm text-white/80">
             <div className="flex items-center bg-white/10 backdrop-blur-sm px-3 py-2 rounded-full">
               <span className="w-2 h-2 bg-orange-400 rounded-full mr-2"></span>
-              Alegria, Cebu
+              Affordable Amenities
             </div>
             <div className="flex items-center bg-white/10 backdrop-blur-sm px-3 py-2 rounded-full">
               <span className="w-2 h-2 bg-orange-400 rounded-full mr-2"></span>
-              Luxury Amenities
+              Alegria, Cebu
             </div>
             <div className="flex items-center bg-white/10 backdrop-blur-sm px-3 py-2 rounded-full">
               <span className="w-2 h-2 bg-orange-400 rounded-full mr-2"></span>
               24/7 Concierge
             </div>
           </div>
+          {/* social links */}
+          <div className="flex justify-center items-center gap-4 pt-4">
+            <span className="text-white/80 text-sm font-medium">
+              Follow Us:
+            </span>
+
+            {socialLinks.map((social, index) => (
+              <Link
+                key={index}
+                href={social.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                className={`group flex items-center justify-center w-12 h-12 bg-white/10 backdrop-blur-sm ${social.hoverColor} text-white rounded-full transition-all duration-300 transform hover:scale-110 hover:shadow-lg`}
+              >
+                {social.icon}
+              </Link>
+            ))}
+          </div>
 
           {/* CTA Buttons */}
-          <div className="flex flex-col sm:flex-row gap-4 justify-center items-center pt-8">
-            <Link
+          <div className="flex flex-col sm:flex-row gap-4 justify-center items-center pt-4">
+            {/* <Link
               href="/book"
               className="group inline-flex items-center px-8 py-4 bg-orange-600 text-white font-semibold rounded-xl shadow-2xl hover:bg-orange-700 hover:shadow-3xl transition-all duration-300 transform hover:-translate-y-1"
             >
               Book Your Stay
               <ArrowRightIcon className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform duration-300" />
-            </Link>
+            </Link> */}
 
             <Link
               href="/gallery"
@@ -76,7 +115,7 @@ export default function Hero() {
           </div>
 
           {/* Stats */}
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-8 pt-16 max-w-2xl mx-auto">
+          {/* <div className="grid grid-cols-2 md:grid-cols-4 gap-8 pt-16 max-w-2xl mx-auto">
             <div className="text-center bg-white/10 backdrop-blur-sm rounded-xl p-4">
               <div className="text-3xl font-bold text-orange-300">50+</div>
               <div className="text-white/80 text-sm">Luxury Rooms</div>
@@ -93,12 +132,12 @@ export default function Hero() {
               <div className="text-3xl font-bold text-orange-300">100%</div>
               <div className="text-white/80 text-sm">Satisfaction</div>
             </div>
-          </div>
+          </div> */}
         </div>
       </div>
 
       {/* Scroll Indicator */}
-      <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce z-10">
+      <div className="absolute bottom-2 left-1/2 transform -translate-x-1/2 animate-bounce z-10">
         <div className="w-6 h-10 border-2 border-white/60 rounded-full flex justify-center backdrop-blur-sm">
           <div className="w-1 h-3 bg-white/80 rounded-full mt-2 animate-pulse"></div>
         </div>

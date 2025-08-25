@@ -131,7 +131,6 @@ export default function Rooms() {
           <div className="mt-3 p-4 bg-orange-50 border border-orange-200 rounded-lg max-w-2xl mx-auto">
             <p className="text-orange-800 text-sm font-medium">
               ⚠️ Limited Availability: Only a few rooms available at the moment.
-              Book now to avoid disappointment!
             </p>
           </div>
         </div>

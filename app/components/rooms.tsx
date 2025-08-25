@@ -108,7 +108,7 @@ export default function Rooms() {
   ];
 
   return (
-    <section className="py-20 bg-gray-50">
+    <section className="pb-20 bg-gray-50">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
         <div className="text-center mb-16">
@@ -317,7 +317,7 @@ export default function Rooms() {
 
         {/* Amenities Section */}
         <div className="mt-16">
-          <div className="bg-gray-100 rounded-2xl p-8">
+          <div className="bg-gray-50 rounded-2xl p-8">
             <h3 className="text-2xl font-bold text-gray-900 mb-8 text-center">
               Resort Amenities
             </h3>

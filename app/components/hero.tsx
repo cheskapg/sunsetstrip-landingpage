@@ -8,7 +8,10 @@ export default function Hero() {
       <div className="absolute inset-0 z-0">
         <div className="w-full h-full bg-gradient-to-br from-orange-600 via-red-500 to-yellow-400 relative">
           {/* Local sunset skies image */}
-          <div className="absolute inset-0 bg-[url('/assets/images/sunset%20skies.jpg')] bg-cover bg-center bg-no-repeat"></div>
+          <div
+            className="absolute inset-0 bg-[url('/assets/images/sunset%20skies.jpg')] bg-cover bg-center bg-no-repeat"
+            style={{ backgroundPosition: "center 100%" }}
+          ></div>
           {/* Dark overlay for text readability */}
           <div className="absolute inset-0 bg-black/40"></div>
           {/* Gradient overlay */}
@@ -34,7 +37,8 @@ export default function Hero() {
 
           {/* Subheading */}
           <p className="text-xl md:text-2xl text-white/90 max-w-3xl mx-auto leading-relaxed drop-shadow-md">
-            Experience Sunset Strip where affordable escapes become unforgettable memories.
+            Experience Sunset Strip where affordable escapes become
+            unforgettable memories.
           </p>
 
           {/* Features */}

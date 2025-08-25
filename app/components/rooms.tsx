@@ -245,7 +245,7 @@ export default function Rooms() {
 
                 {/* CTA Button */}
                 <Link
-                  href={`/book?room=${room.id}`}
+                  href={`/`}
                   className={`group w-full inline-flex items-center justify-center px-6 py-3 font-semibold rounded-xl transition-all duration-300 ${
                     room.popular
                       ? "bg-orange-600 text-white hover:bg-orange-700 shadow-lg hover:shadow-xl"
@@ -306,7 +306,7 @@ export default function Rooms() {
             </div>
 
             <Link
-              href="/contact"
+              href="/"
               className="inline-flex items-center px-6 py-3 bg-orange-600 text-white font-semibold rounded-xl hover:bg-orange-700 transition-colors duration-300"
             >
               Contact Us for Booking

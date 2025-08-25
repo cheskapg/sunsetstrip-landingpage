@@ -1,3 +1,5 @@
+"use client";
+
 import Link from "next/link";
 import {
   MapPinIcon,
@@ -10,19 +12,46 @@ import InstagramIcon from "./icons/InstagramIcon";
 
 export default function Footer() {
   const navigationLinks = [
-    { name: "Home", href: "/" },
-    { name: "About", href: "/about" },
-    { name: "Rooms", href: "/rooms" },
-    { name: "Gallery", href: "/gallery" },
-    { name: "Contact", href: "/contact" },
+    { name: "Home", href: "#hero" },
+    { name: "Gallery", href: "#gallery" },
+    { name: "Attractions", href: "#attractions" },
+    { name: "Rooms", href: "#rooms" },
+    { name: "Contact", href: "#contact" },
   ];
 
+  const handleSmoothScroll = (
+    e: React.MouseEvent<HTMLAnchorElement>,
+    href: string
+  ) => {
+    e.preventDefault();
+    const targetId = href.replace("#", "");
+    const targetElement = document.getElementById(targetId);
+
+    if (targetElement) {
+      const elementPosition = targetElement.offsetTop;
+      // Default offset = 80px for navbar height
+      let offset = 80;
+
+      // If the section is "gallery", no offset needed
+      if (targetId === "gallery") {
+        offset = 0;
+      }
+
+      const offsetPosition = elementPosition - offset;
+
+      window.scrollTo({
+        top: offsetPosition,
+        behavior: "smooth",
+      });
+    }
+  };
+
   const serviceLinks = [
-    { name: "Concierge", href: "/services/concierge" },
-    { name: "Room Service", href: "/services/room-service" },
-    { name: "Spa & Wellness", href: "/services/spa" },
-    { name: "Business Center", href: "/services/business" },
-    { name: "Valet Parking", href: "/services/valet" },
+    { name: "Concierge", href: "/" },
+    { name: "Room Service", href: "/" },
+    { name: "Spa & Wellness", href: "/" },
+    { name: "Business Center", href: "/" },
+    { name: "Valet Parking", href: "/" },
   ];
 
   const legalLinks = [
@@ -87,12 +116,13 @@ export default function Footer() {
             <ul className="space-y-3">
               {navigationLinks.map((link) => (
                 <li key={link.name}>
-                  <Link
+                  <a
                     href={link.href}
-                    className="text-gray-400 hover:text-orange-400 transition-colors duration-300"
+                    onClick={(e) => handleSmoothScroll(e, link.href)}
+                    className="text-gray-400 hover:text-orange-400 transition-colors duration-300 cursor-pointer"
                   >
                     {link.name}
-                  </Link>
+                  </a>
                 </li>
               ))}
             </ul>

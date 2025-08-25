@@ -107,7 +107,7 @@ export default function Hero() {
             </Link> */}
 
             <Link
-              href="/gallery"
+              href="/"
               className="inline-flex items-center px-8 py-4 bg-white/90 backdrop-blur-sm text-gray-900 font-semibold rounded-xl shadow-2xl hover:bg-white hover:shadow-3xl transition-all duration-300 border border-white/30"
             >
               View Gallery

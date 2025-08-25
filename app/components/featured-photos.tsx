@@ -22,7 +22,7 @@ export default function FeaturedPhotos() {
       description:
         "Relax and enjoy a warm, calming sunset right from our restaurant.",
       imageUrl: [
-        "/assets/images/sunset skies 5.jpg",
+        "/assets/images/sunset skies 2.jpg",
         "/assets/images/sunset skies 3.jpg",
         "/assets/images/sunset yellow.jpg",
       ],
@@ -50,6 +50,9 @@ export default function FeaturedPhotos() {
       imageUrl: [
         "/assets/images/Kayak.jpg",
         "/assets/images/SummerShore.jpg",
+        "/assets/images/sunsetstriptables.jpg",
+        "/assets/images/sunsetstripbar.jpg",
+        "/assets/images/sunsetstripbarfront.jpg",
         "/assets/images/Shoreline.jpg",
         "/assets/images/FeatureGirl.jpg",
       ],
@@ -138,7 +141,7 @@ export default function FeaturedPhotos() {
 
                   {/* Title */}
                   <h1 className="text-6xl md:text-7xl font-bold text-white mb-6 leading-tight">
-                    Our Breathtaking
+                    Breathtaking
                     <span className="bg-gradient-to-r from-orange-400 to-yellow-400 bg-clip-text text-transparent block">
                       Sunset Views
                     </span>
@@ -148,7 +151,7 @@ export default function FeaturedPhotos() {
                   <p className="text-xl text-gray-200 mb-12 leading-relaxed">
                     Experience magical sunsets that paint the sky in brilliant
                     colors. Every evening brings a new masterpiece right from
-                    the resto.
+                    your window.
                   </p>
 
                   {/* CTA Buttons */}
@@ -199,22 +202,40 @@ export default function FeaturedPhotos() {
           </>
         )}
       </div>
+
       {/* Other Photos Grid */}
-      <div className="relative z-10  bg-amber-900 py-20">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          {/* Section Header */}
-          <div className="text-center mb-16">
-            <h2 className="text-4xl md:text-5xl font-bold text-white mb-6">
-              More to Discover
+      <div className="relative z-10 pt-24 pb-32">
+        {/* Modern Background with Sunset Strip Elements */}
+        <div className="absolute inset-0 bg-gradient-to-b from-orange-900/30 via-red-900/20 to-amber-900/40"></div>
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_40%,rgba(251,146,60,0.25),transparent_50%)]"></div>
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_70%_80%,rgba(239,68,68,0.2),transparent_50%)]"></div>
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_20%,rgba(245,158,11,0.15),transparent_60%)]"></div>
+
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+          {/* Modern Section Header */}
+          <div className="text-center mb-12">
+            {/* <div className="inline-flex items-center px-6 py-2 bg-gradient-to-r from-orange-600/30 to-red-500/30 backdrop-blur-xl rounded-full border border-orange-400/40 mb-8">
+              <div className="w-2 h-2 bg-gradient-to-r from-yellow-400 to-orange-500 rounded-full mr-3 animate-pulse"></div>
+              <span className="text-orange-100 font-medium text-sm uppercase tracking-wider">Experience Collection</span>
+            </div> */}
+            <h2 className="text-5xl md:text-6xl font-bold mb-6">
+              <span className="bg-gradient-to-r from-white via-orange-100 to-yellow-200 bg-clip-text text-transparent">
+                Discover Your
+              </span>
+              <br />
+              <span className="bg-gradient-to-r from-orange-400 via-yellow-400 to-amber-300 bg-clip-text text-transparent">
+                Perfect Moment
+              </span>
             </h2>
-            <p className="text-xl text-gray-300 max-w-2xl mx-auto">
-              From affordable accommodations to exciting activities, explore
-              everything that makes your stay unforgettable.
+            <p className="text-xl text-slate-300 max-w-3xl mx-auto leading-relaxed">
+              From intimate sunset dinners to adventure-filled days, every
+              corner of Sunset Strip offers unforgettable experiences crafted
+              just for you.
             </p>
           </div>
 
-          {/* Photo Grid */}
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+          {/* Modern Photo Grid */}
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
             {otherPhotos.map((photo, index) => {
               const currentIndex = currentImageIndex[photo.id] || 0;
               const totalImages = photo.imageUrl.length;
@@ -222,35 +243,44 @@ export default function FeaturedPhotos() {
               return (
                 <div
                   key={photo.id}
-                  className="group relative overflow-hidden rounded-3xl bg-gray-800 shadow-2xl hover:shadow-orange-500/20 transition-all duration-700 transform hover:scale-[1.02]"
+                  className="group relative overflow-hidden rounded-2xl bg-black/40 backdrop-blur-sm border border-orange-400/20 shadow-xl hover:shadow-orange-500/30 transition-all duration-500 transform hover:scale-[1.02]"
                   onMouseEnter={() => setHoveredCard(photo.id)}
                   onMouseLeave={() => setHoveredCard(null)}
                 >
                   {/* Image Container */}
                   <div
-                    className="w-full lg:w-[800px] aspect-[16/10] relative overflow-hidden"
+                    className="aspect-[4/3] relative overflow-hidden"
                     onClick={() => nextImage(photo.id, totalImages)}
                   >
                     <Image
                       src={photo.imageUrl[currentIndex]}
                       alt={`${photo.title} - Image ${currentIndex + 1}`}
                       fill
-                      className="object-cover transition-all duration-700 group-hover:scale-110 cursor-pointer"
+                      className="object-cover transition-all duration-500 group-hover:scale-105"
                       sizes="(max-width: 1024px) 100vw, 50vw"
                     />
+
+                    {/* Simple Overlay */}
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent"></div>
 
                     {/* Navigation Buttons */}
                     {totalImages > 1 && (
                       <>
                         <button
-                          onClick={() => prevImage(photo.id, totalImages)}
-                          className="absolute left-4 top-1/2 transform -translate-y-1/2 bg-black/50 hover:bg-black/70 text-white rounded-full p-3 opacity-0 group-hover:opacity-100 transition-all duration-300 z-10 backdrop-blur-sm"
+                          onClick={(e) => {
+                            e.stopPropagation();
+                            prevImage(photo.id, totalImages);
+                          }}
+                          className="absolute left-4 top-1/2 transform -translate-y-1/2 bg-black/50 hover:bg-black/70 text-white rounded-full p-3 opacity-0 group-hover:opacity-100 transition-all duration-300 backdrop-blur-sm z-10"
                         >
                           <ChevronLeftIcon className="h-5 w-5" />
                         </button>
                         <button
-                          onClick={() => nextImage(photo.id, totalImages)}
-                          className="absolute right-4 top-1/2 transform -translate-y-1/2 bg-black/50 hover:bg-black/70 text-white rounded-full p-3 opacity-0 group-hover:opacity-100 transition-all duration-300 z-10 backdrop-blur-sm"
+                          onClick={(e) => {
+                            e.stopPropagation();
+                            nextImage(photo.id, totalImages);
+                          }}
+                          className="absolute right-4 top-1/2 transform -translate-y-1/2 bg-black/50 hover:bg-black/70 text-white rounded-full p-3 opacity-0 group-hover:opacity-100 transition-all duration-300 backdrop-blur-sm z-10"
                         >
                           <ChevronRightIcon className="h-5 w-5" />
                         </button>
@@ -258,31 +288,28 @@ export default function FeaturedPhotos() {
                     )}
 
                     {/* Category Badge */}
-                    <div className="absolute top-6 left-6">
-                      <span className="px-4 py-2 bg-white/90 backdrop-blur-sm text-gray-900 text-sm font-bold rounded-full">
+                    <div className="absolute top-4 left-4">
+                      <span className="px-3 py-1 bg-orange-500 text-white text-sm font-medium rounded-full">
                         {photo.category}
                       </span>
                     </div>
 
                     {/* Image Counter */}
                     {totalImages > 1 && (
-                      <div className="absolute top-6 right-6">
-                        <span className="px-3 py-1 bg-black/50 backdrop-blur-sm text-white text-sm rounded-full">
+                      <div className="absolute top-4 right-4">
+                        <span className="px-3 py-1 bg-black/60 text-white text-sm rounded-full backdrop-blur-sm">
                           {currentIndex + 1}/{totalImages}
                         </span>
                       </div>
                     )}
-
-                    {/* Gradient Overlay */}
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent"></div>
                   </div>
 
                   {/* Content */}
-                  <div className="absolute bottom-0 left-0 right-0 p-8">
-                    <h3 className="text-2xl font-bold text-white mb-3">
+                  <div className="absolute bottom-0 left-0 right-0 p-6">
+                    <h3 className="text-xl font-bold text-white mb-2">
                       {photo.title}
                     </h3>
-                    <p className="text-gray-300 leading-relaxed mb-4">
+                    <p className="text-gray-300 text-sm mb-4 line-clamp-2">
                       {photo.description}
                     </p>
 
@@ -300,7 +327,7 @@ export default function FeaturedPhotos() {
                             }
                             className={`w-2 h-2 rounded-full transition-all duration-200 ${
                               imgIndex === currentIndex
-                                ? "bg-orange-400 scale-125"
+                                ? "bg-orange-500 scale-125"
                                 : "bg-white/50 hover:bg-white/75"
                             }`}
                           />
@@ -313,25 +340,41 @@ export default function FeaturedPhotos() {
             })}
           </div>
 
-          {/* Bottom CTA */}
-          <div className="text-center mt-16">
-            <button className="inline-flex items-center px-8 py-4 bg-gradient-to-r from-orange-500 to-yellow-500 text-white font-semibold rounded-xl shadow-2xl hover:shadow-orange-500/30 transition-all duration-300 transform hover:scale-105">
-              Book Your Stay
-              <svg
-                className="ml-2 h-5 w-5"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M17 8l4 4m0 0l-4 4m4-4H3"
-                />
-              </svg>
-            </button>
-          </div>
+          {/* Modern Bottom CTA
+          <div className="text-center mt-24">
+            <div className="inline-block">
+              <div className="bg-gradient-to-r from-orange-900/60 to-red-900/60 backdrop-blur-xl rounded-3xl p-12 border border-orange-400/30 shadow-2xl">
+                <div className="max-w-lg mx-auto">
+                  <div className="w-16 h-16 bg-gradient-to-r from-yellow-400 to-orange-500 rounded-2xl mx-auto mb-8 flex items-center justify-center shadow-lg shadow-orange-400/40">
+                    <svg className="h-8 w-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 3v18m9-9H3" />
+                    </svg>
+                  </div>
+                  <h3 className="text-3xl font-bold text-white mb-4">
+                    Ready for Your 
+                    <span className="bg-gradient-to-r from-yellow-400 to-orange-500 bg-clip-text text-transparent"> Sunset Strip</span> Experience?
+                  </h3>
+                  <p className="text-orange-100 mb-8 leading-relaxed">
+                    Don't just dream about paradise – live it. Book your unforgettable getaway today.
+                  </p>
+                  <div className="flex flex-col sm:flex-row gap-4 justify-center">
+                    <button className="group relative overflow-hidden px-8 py-4 bg-gradient-to-r from-yellow-500 to-orange-500 text-white font-semibold rounded-2xl shadow-2xl hover:shadow-orange-500/40 transition-all duration-300 transform hover:scale-105">
+                      <div className="absolute inset-0 bg-gradient-to-r from-yellow-600 to-orange-600 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                      <div className="relative flex items-center justify-center">
+                        <span>Book Your Stay</span>
+                        <svg className="ml-2 h-5 w-5 transform group-hover:translate-x-1 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                        </svg>
+                      </div>
+                    </button>
+                    <button className="px-8 py-4 bg-gradient-to-r from-orange-800/40 to-red-800/40 hover:from-orange-700/60 hover:to-red-700/60 text-orange-100 hover:text-white font-semibold rounded-2xl border border-orange-400/30 hover:border-orange-300/50 backdrop-blur-xl transition-all duration-300 transform hover:scale-105">
+                      View All Galleries
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div> */}
         </div>
       </div>
     </section>

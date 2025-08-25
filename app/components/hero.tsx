@@ -1,5 +1,5 @@
-import Link from 'next/link';
-import { ArrowRightIcon } from '@heroicons/react/24/outline';
+import Link from "next/link";
+import { ArrowRightIcon } from "@heroicons/react/24/outline";
 
 export default function Hero() {
   return (
@@ -8,12 +8,14 @@ export default function Hero() {
       <div className="absolute inset-0 opacity-40">
         <div className="absolute inset-0 bg-gradient-to-r from-orange-500/5 to-yellow-500/5"></div>
       </div>
-      
+
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
         <div className="space-y-8">
           {/* Badge */}
           <div className="inline-flex items-center px-4 py-2 bg-white/80 backdrop-blur-sm rounded-full shadow-sm border border-orange-200">
-            <span className="text-orange-600 font-medium text-sm">✨ Experience Luxury on Sunset Strip</span>
+            <span className="text-orange-600 font-medium text-sm">
+              ✨ Experience Luxury on Sunset Strip
+            </span>
           </div>
 
           {/* Main Heading */}
@@ -26,7 +28,7 @@ export default function Hero() {
 
           {/* Subheading */}
           <p className="text-xl md:text-2xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
-            Discover the ultimate luxury experience in the heart of Los Angeles. 
+            Discover the ultimate luxury experience in the heart of Los Angeles.
             Where glamour meets comfort and every moment becomes a memory.
           </p>
 
@@ -55,7 +57,7 @@ export default function Hero() {
               Book Your Stay
               <ArrowRightIcon className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform duration-300" />
             </Link>
-            
+
             <Link
               href="/gallery"
               className="inline-flex items-center px-8 py-4 bg-white/80 backdrop-blur-sm text-gray-900 font-semibold rounded-xl shadow-lg hover:bg-white hover:shadow-xl transition-all duration-300 border border-gray-200"

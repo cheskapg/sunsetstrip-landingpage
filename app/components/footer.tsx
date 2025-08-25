@@ -1,33 +1,33 @@
-import Link from 'next/link';
-import { 
-  MapPinIcon, 
-  PhoneIcon, 
+import Link from "next/link";
+import {
+  MapPinIcon,
+  PhoneIcon,
   EnvelopeIcon,
-  ClockIcon 
-} from '@heroicons/react/24/outline';
+  ClockIcon,
+} from "@heroicons/react/24/outline";
 
 export default function Footer() {
   const navigationLinks = [
-    { name: 'Home', href: '/' },
-    { name: 'About', href: '/about' },
-    { name: 'Rooms', href: '/rooms' },
-    { name: 'Gallery', href: '/gallery' },
-    { name: 'Contact', href: '/contact' },
+    { name: "Home", href: "/" },
+    { name: "About", href: "/about" },
+    { name: "Rooms", href: "/rooms" },
+    { name: "Gallery", href: "/gallery" },
+    { name: "Contact", href: "/contact" },
   ];
 
   const serviceLinks = [
-    { name: 'Concierge', href: '/services/concierge' },
-    { name: 'Room Service', href: '/services/room-service' },
-    { name: 'Spa & Wellness', href: '/services/spa' },
-    { name: 'Business Center', href: '/services/business' },
-    { name: 'Valet Parking', href: '/services/valet' },
+    { name: "Concierge", href: "/services/concierge" },
+    { name: "Room Service", href: "/services/room-service" },
+    { name: "Spa & Wellness", href: "/services/spa" },
+    { name: "Business Center", href: "/services/business" },
+    { name: "Valet Parking", href: "/services/valet" },
   ];
 
   const legalLinks = [
-    { name: 'Privacy Policy', href: '/privacy' },
-    { name: 'Terms of Service', href: '/terms' },
-    { name: 'Cancellation Policy', href: '/cancellation' },
-    { name: 'Accessibility', href: '/accessibility' },
+    { name: "Privacy Policy", href: "/privacy" },
+    { name: "Terms of Service", href: "/terms" },
+    { name: "Cancellation Policy", href: "/cancellation" },
+    { name: "Accessibility", href: "/accessibility" },
   ];
 
   return (
@@ -42,7 +42,8 @@ export default function Footer() {
                 Sunset Strip
               </h3>
               <p className="text-gray-400 mt-2">
-                Experience luxury in the heart of Los Angeles. Where every moment becomes a cherished memory.
+                Experience luxury in the heart of Los Angeles. Where every
+                moment becomes a cherished memory.
               </p>
             </div>
 
@@ -55,12 +56,12 @@ export default function Footer() {
                   <p className="text-gray-300">West Hollywood, CA 90046</p>
                 </div>
               </div>
-              
+
               <div className="flex items-center">
                 <PhoneIcon className="h-5 w-5 text-orange-400 mr-3 flex-shrink-0" />
                 <p className="text-gray-300">(323) 555-0123</p>
               </div>
-              
+
               <div className="flex items-center">
                 <EnvelopeIcon className="h-5 w-5 text-orange-400 mr-3 flex-shrink-0" />
                 <p className="text-gray-300">hello@sunsetstrip.com</p>
@@ -82,7 +83,7 @@ export default function Footer() {
             <ul className="space-y-3">
               {navigationLinks.map((link) => (
                 <li key={link.name}>
-                  <Link 
+                  <Link
                     href={link.href}
                     className="text-gray-400 hover:text-orange-400 transition-colors duration-300"
                   >
@@ -99,7 +100,7 @@ export default function Footer() {
             <ul className="space-y-3">
               {serviceLinks.map((link) => (
                 <li key={link.name}>
-                  <Link 
+                  <Link
                     href={link.href}
                     className="text-gray-400 hover:text-orange-400 transition-colors duration-300"
                   >
@@ -113,7 +114,7 @@ export default function Footer() {
           {/* Newsletter & Social */}
           <div>
             <h4 className="text-lg font-semibold mb-6">Stay Connected</h4>
-            
+
             {/* Newsletter Signup */}
             <div className="mb-6">
               <p className="text-gray-400 text-sm mb-4">
@@ -135,13 +136,22 @@ export default function Footer() {
             <div>
               <p className="text-gray-400 text-sm mb-4">Follow us</p>
               <div className="flex space-x-4">
-                <a href="#" className="w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center hover:bg-orange-600 transition-colors duration-300">
+                <a
+                  href="#"
+                  className="w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center hover:bg-orange-600 transition-colors duration-300"
+                >
                   <span className="text-sm font-bold">fb</span>
                 </a>
-                <a href="#" className="w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center hover:bg-orange-600 transition-colors duration-300">
+                <a
+                  href="#"
+                  className="w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center hover:bg-orange-600 transition-colors duration-300"
+                >
                   <span className="text-sm font-bold">ig</span>
                 </a>
-                <a href="#" className="w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center hover:bg-orange-600 transition-colors duration-300">
+                <a
+                  href="#"
+                  className="w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center hover:bg-orange-600 transition-colors duration-300"
+                >
                   <span className="text-sm font-bold">tw</span>
                 </a>
               </div>
@@ -162,7 +172,7 @@ export default function Footer() {
             {/* Legal Links */}
             <div className="flex flex-wrap justify-center md:justify-end gap-6">
               {legalLinks.map((link) => (
-                <Link 
+                <Link
                   key={link.name}
                   href={link.href}
                   className="text-gray-400 hover:text-orange-400 text-sm transition-colors duration-300"

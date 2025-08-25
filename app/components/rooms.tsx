@@ -1,11 +1,11 @@
-import Link from 'next/link';
-import { 
-  HomeIcon, 
-  UserGroupIcon, 
-  WifiIcon, 
+import Link from "next/link";
+import {
+  HomeIcon,
+  UserGroupIcon,
+  WifiIcon,
   TvIcon,
-  ArrowRightIcon 
-} from '@heroicons/react/24/outline';
+  ArrowRightIcon,
+} from "@heroicons/react/24/outline";
 
 export default function Rooms() {
   const rooms = [
@@ -18,7 +18,7 @@ export default function Rooms() {
       features: ["King Bed", "City View", "WiFi", "TV", "Mini Bar"],
       maxGuests: 2,
       size: "450 sq ft",
-      popular: false
+      popular: false,
     },
     {
       id: 2,
@@ -29,7 +29,7 @@ export default function Rooms() {
       features: ["King Bed", "Panoramic View", "WiFi", "Smart TV", "Jacuzzi"],
       maxGuests: 2,
       size: "650 sq ft",
-      popular: true
+      popular: true,
     },
     {
       id: 3,
@@ -37,11 +37,17 @@ export default function Rooms() {
       price: "$899",
       period: "per night",
       description: "Ultimate luxury with private terrace and butler service",
-      features: ["Master Suite", "Private Terrace", "Butler", "Full Kitchen", "Hot Tub"],
+      features: [
+        "Master Suite",
+        "Private Terrace",
+        "Butler",
+        "Full Kitchen",
+        "Hot Tub",
+      ],
       maxGuests: 4,
       size: "1200 sq ft",
-      popular: false
-    }
+      popular: false,
+    },
   ];
 
   return (
@@ -51,26 +57,28 @@ export default function Rooms() {
         <div className="text-center mb-16">
           <div className="inline-flex items-center px-4 py-2 bg-orange-100 rounded-full mb-6">
             <HomeIcon className="h-5 w-5 text-orange-600 mr-2" />
-            <span className="text-orange-600 font-medium text-sm">Accommodations</span>
+            <span className="text-orange-600 font-medium text-sm">
+              Accommodations
+            </span>
           </div>
-          
+
           <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
             Luxury Rooms & Suites
           </h2>
-          
+
           <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-            Choose from our collection of thoughtfully designed rooms and suites, 
-            each offering unparalleled comfort and stunning views.
+            Choose from our collection of thoughtfully designed rooms and
+            suites, each offering unparalleled comfort and stunning views.
           </p>
         </div>
 
         {/* Rooms Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {rooms.map((room) => (
-            <div 
-              key={room.id} 
+            <div
+              key={room.id}
               className={`relative bg-white rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2 overflow-hidden ${
-                room.popular ? 'ring-2 ring-orange-500' : ''
+                room.popular ? "ring-2 ring-orange-500" : ""
               }`}
             >
               {/* Popular Badge */}
@@ -87,10 +95,12 @@ export default function Rooms() {
                 <div className="absolute inset-0 flex items-center justify-center">
                   <div className="text-center text-orange-600">
                     <HomeIcon className="h-16 w-16 mx-auto mb-4 opacity-50" />
-                    <p className="text-sm font-medium opacity-75">{room.name}</p>
+                    <p className="text-sm font-medium opacity-75">
+                      {room.name}
+                    </p>
                   </div>
                 </div>
-                
+
                 {/* Overlay */}
                 <div className="absolute inset-0 bg-black/10"></div>
               </div>
@@ -99,9 +109,11 @@ export default function Rooms() {
               <div className="p-8">
                 {/* Room Info */}
                 <div className="mb-6">
-                  <h3 className="text-2xl font-bold text-gray-900 mb-2">{room.name}</h3>
+                  <h3 className="text-2xl font-bold text-gray-900 mb-2">
+                    {room.name}
+                  </h3>
                   <p className="text-gray-600 mb-4">{room.description}</p>
-                  
+
                   {/* Room Details */}
                   <div className="flex items-center gap-4 text-sm text-gray-500 mb-4">
                     <div className="flex items-center">
@@ -117,7 +129,10 @@ export default function Rooms() {
                   <h4 className="font-semibold text-gray-900 mb-3">Features</h4>
                   <div className="grid grid-cols-2 gap-2">
                     {room.features.map((feature, index) => (
-                      <div key={index} className="flex items-center text-sm text-gray-600">
+                      <div
+                        key={index}
+                        className="flex items-center text-sm text-gray-600"
+                      >
                         <div className="w-2 h-2 bg-orange-500 rounded-full mr-2"></div>
                         {feature}
                       </div>
@@ -128,7 +143,9 @@ export default function Rooms() {
                 {/* Pricing */}
                 <div className="flex items-center justify-between mb-6">
                   <div>
-                    <span className="text-3xl font-bold text-gray-900">{room.price}</span>
+                    <span className="text-3xl font-bold text-gray-900">
+                      {room.price}
+                    </span>
                     <span className="text-gray-500 ml-1">/{room.period}</span>
                   </div>
                 </div>
@@ -138,8 +155,8 @@ export default function Rooms() {
                   href={`/book?room=${room.id}`}
                   className={`group w-full inline-flex items-center justify-center px-6 py-3 font-semibold rounded-xl transition-all duration-300 ${
                     room.popular
-                      ? 'bg-orange-600 text-white hover:bg-orange-700 shadow-lg hover:shadow-xl'
-                      : 'bg-gray-900 text-white hover:bg-gray-800 shadow-lg hover:shadow-xl'
+                      ? "bg-orange-600 text-white hover:bg-orange-700 shadow-lg hover:shadow-xl"
+                      : "bg-gray-900 text-white hover:bg-gray-800 shadow-lg hover:shadow-xl"
                   }`}
                 >
                   Book Now
@@ -157,7 +174,8 @@ export default function Rooms() {
               Need help choosing the perfect room?
             </h3>
             <p className="text-gray-600 mb-6">
-              Our concierge team is available 24/7 to help you find the ideal accommodation for your stay.
+              Our concierge team is available 24/7 to help you find the ideal
+              accommodation for your stay.
             </p>
             <Link
               href="/contact"

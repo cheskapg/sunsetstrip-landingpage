@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 import {
   HomeIcon,
   UserGroupIcon,
@@ -11,42 +12,98 @@ export default function Rooms() {
   const rooms = [
     {
       id: 1,
-      name: "Deluxe Suite",
-      price: "$299",
+      name: "Couple Room",
+      imagePath: "/assets/images/room 3/CoupleRoom3-1.jpg",
+      regularPrice: "₱1,199",
+      weekendPrice: "₱1,500",
       period: "per night",
-      description: "Spacious suite with city views and modern amenities",
-      features: ["King Bed", "City View", "WiFi", "TV", "Mini Bar"],
+      description:
+        "Perfect for couples seeking a romantic getaway with beachfront access",
+      features: [
+        "1 Standard Double Bed",
+        "Air Conditioning",
+        "2 Guests Max",
+        "Free WiFi",
+        "Bathroom Amenities",
+      ],
       maxGuests: 2,
-      size: "450 sq ft",
+      extraPerson: "₱300",
+      available: "2 rooms available",
       popular: false,
     },
     {
       id: 2,
-      name: "Premium Suite",
-      price: "$449",
+      name: "Family Room #1",
+      imagePath: "/assets/images/room 1/FamilyRoom1-1.jpg",
+      regularPrice: "₱2,399",
+      weekendPrice: "₱2,600",
       period: "per night",
-      description: "Luxury suite with panoramic views and premium services",
-      features: ["King Bed", "Panoramic View", "WiFi", "Smart TV", "Jacuzzi"],
-      maxGuests: 2,
-      size: "650 sq ft",
+      description:
+        "Spacious family accommodation with double bed and bunk bed setup",
+      features: [
+        "1 Standard Double Bed",
+        "1 Bunk Bed",
+        "Air Conditioning",
+        "4 Guests Max",
+        "Free WiFi",
+      ],
+      maxGuests: 4,
+      extraPerson: "₱300",
+      available: "1 room available",
       popular: true,
     },
     {
       id: 3,
-      name: "Penthouse",
-      price: "$899",
+      name: "Family Room #2",
+      imagePath: "/assets/images/room 2/FamilyRoom2-1.jpg",
+      regularPrice: "₱2,599",
+      weekendPrice: "₱2,900",
       period: "per night",
-      description: "Ultimate luxury with private terrace and butler service",
+      description: "Premium family room with enhanced amenities and comfort",
       features: [
-        "Master Suite",
-        "Private Terrace",
-        "Butler",
-        "Full Kitchen",
-        "Hot Tub",
+        "1 Standard Double Bed",
+        "1 Bunk Bed",
+        "Air Conditioning",
+        "4 Guests Max",
+        "Premium Setup",
       ],
       maxGuests: 4,
-      size: "1200 sq ft",
+      extraPerson: "₱300",
+      available: "1 room available",
       popular: false,
+    },
+  ];
+
+  const amenities = [
+    {
+      category: "Resort Features",
+      items: [
+        "Beachfront location",
+        "Car parking available",
+        "All rooms air-conditioned",
+        "24-hour security & CCTV",
+        "Semi-open outdoor restaurant",
+      ],
+    },
+    {
+      category: "Safety & Hygiene",
+      items: [
+        "UV disinfection",
+        "Lifeguard on duty",
+        "Smoke detectors",
+        "Fog disinfectant machine",
+        "Bathroom amenities provided",
+      ],
+    },
+    {
+      category: "Water Activities",
+      items: [
+        "Body boards",
+        "Kayak rentals",
+        "Paddle boards",
+        "Life jackets provided",
+        "Free coffee at restaurant",
+      ],
     },
   ];
 
@@ -63,12 +120,21 @@ export default function Rooms() {
           </div>
 
           <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
-            Rooms & Suites
+            Available Rooms
           </h2>
 
           <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-            Choose from our collection of thoughtfully designed rooms each offering unparalleled comfort and stunning views.
+            We have limited rooms available. Book early to secure your
+            beachfront getaway experience.
           </p>
+
+          {/* Important Notice */}
+          <div className="mt-8 p-4 bg-orange-50 border border-orange-200 rounded-lg max-w-2xl mx-auto">
+            <p className="text-orange-800 text-sm font-medium">
+              ⚠️ Limited Availability: Only a few rooms available at the moment.
+              Book now to avoid disappointment!
+            </p>
+          </div>
         </div>
 
         {/* Rooms Grid */}
@@ -89,16 +155,27 @@ export default function Rooms() {
                 </div>
               )}
 
-              {/* Room Image Placeholder */}
+              {/* Room Image */}
               <div className="aspect-[4/3] bg-gradient-to-br from-orange-100 to-yellow-100 relative overflow-hidden">
-                <div className="absolute inset-0 flex items-center justify-center">
-                  <div className="text-center text-orange-600">
-                    <HomeIcon className="h-16 w-16 mx-auto mb-4 opacity-50" />
-                    <p className="text-sm font-medium opacity-75">
-                      {room.name}
-                    </p>
+                {room.imagePath ? (
+                  <Image
+                    src={room.imagePath}
+                    alt={room.name}
+                    fill
+                    className="object-cover"
+                    sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                  />
+                ) : (
+                  /* Fallback content when no image path */
+                  <div className="absolute inset-0 flex items-center justify-center bg-gradient-to-br from-orange-100 to-yellow-100">
+                    <div className="text-center text-orange-600">
+                      <HomeIcon className="h-16 w-16 mx-auto mb-4 opacity-50" />
+                      <p className="text-sm font-medium opacity-75">
+                        {room.name}
+                      </p>
+                    </div>
                   </div>
-                </div>
+                )}
 
                 {/* Overlay */}
                 <div className="absolute inset-0 bg-black/10"></div>
@@ -117,9 +194,11 @@ export default function Rooms() {
                   <div className="flex items-center gap-4 text-sm text-gray-500 mb-4">
                     <div className="flex items-center">
                       <UserGroupIcon className="h-4 w-4 mr-1" />
-                      {room.maxGuests} guests
+                      {room.maxGuests} guests max
                     </div>
-                    <div>{room.size}</div>
+                    <div className="text-orange-600 font-medium">
+                      {room.available}
+                    </div>
                   </div>
                 </div>
 
@@ -140,12 +219,28 @@ export default function Rooms() {
                 </div>
 
                 {/* Pricing */}
-                <div className="flex items-center justify-between mb-6">
-                  <div>
-                    <span className="text-3xl font-bold text-gray-900">
-                      {room.price}
-                    </span>
-                    <span className="text-gray-500 ml-1">/{room.period}</span>
+                <div className="mb-6">
+                  <div className="space-y-2">
+                    <div className="flex items-center justify-between">
+                      <span className="text-sm text-gray-600">
+                        Regular Rate:
+                      </span>
+                      <span className="text-2xl font-bold text-gray-900">
+                        {room.regularPrice}
+                      </span>
+                    </div>
+                    <div className="flex items-center justify-between">
+                      <span className="text-sm text-gray-600">
+                        Weekend Rate:
+                      </span>
+                      <span className="text-xl font-semibold text-orange-600">
+                        {room.weekendPrice}
+                      </span>
+                    </div>
+                    <div className="text-xs text-gray-500 mt-2">
+                      Extra Person: {room.extraPerson} • No free breakfast
+                      included
+                    </div>
                   </div>
                 </div>
 
@@ -168,20 +263,81 @@ export default function Rooms() {
 
         {/* Bottom CTA */}
         <div className="text-center mt-16">
-          <div className="bg-white rounded-2xl shadow-lg p-8 max-w-2xl mx-auto">
+          <div className="bg-white rounded-2xl shadow-lg p-8 max-w-4xl mx-auto">
             <h3 className="text-2xl font-bold text-gray-900 mb-4">
               Need help choosing the perfect room?
             </h3>
             <p className="text-gray-600 mb-6">
-              Our concierge team is available 24/7 to help you find the ideal
-              accommodation for your stay.
+              Our team is available to help you find the ideal accommodation for
+              your stay.
             </p>
+
+            {/* Important Policies */}
+            <div className="grid md:grid-cols-2 gap-6 mb-6 text-left">
+              <div className="space-y-3">
+                <h4 className="font-semibold text-gray-900">
+                  Check-in/Check-out
+                </h4>
+                <p className="text-sm text-gray-600">
+                  Check-in: 2:00 PM
+                  <br />
+                  Check-out: 12:00 NN
+                </p>
+
+                <h4 className="font-semibold text-gray-900">Children Policy</h4>
+                <p className="text-sm text-gray-600">
+                  • Ages 0-3: Free
+                  <br />
+                  • Ages 4-7: 50% of extra person fee
+                  <br />• Ages 8+: Full extra person fee (₱300)
+                </p>
+              </div>
+
+              <div className="space-y-3">
+                <h4 className="font-semibold text-gray-900">Pet Policy</h4>
+                <p className="text-sm text-gray-600">
+                  Pets welcome! Owners responsible for damages and cleanliness.
+                </p>
+
+                <h4 className="font-semibold text-gray-900">Food & Drinks</h4>
+                <p className="text-sm text-gray-600">
+                  Outside food not allowed. Corkage fee: ₱2,000 minimum.
+                </p>
+              </div>
+            </div>
+
             <Link
               href="/contact"
               className="inline-flex items-center px-6 py-3 bg-orange-600 text-white font-semibold rounded-xl hover:bg-orange-700 transition-colors duration-300"
             >
-              Contact Concierge
+              Contact Us for Booking
             </Link>
+          </div>
+        </div>
+
+        {/* Amenities Section */}
+        <div className="mt-16">
+          <div className="bg-gray-100 rounded-2xl p-8">
+            <h3 className="text-2xl font-bold text-gray-900 mb-8 text-center">
+              Resort Amenities
+            </h3>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-5xl mx-auto">
+              {amenities.map((amenityGroup, index) => (
+                <div key={index} className="text-center">
+                  <h4 className="font-semibold text-gray-900 mb-4 text-lg">
+                    {amenityGroup.category}
+                  </h4>
+                  <ul className="text-sm text-gray-600 space-y-2 max-w-xs mx-auto text-center">
+                    {amenityGroup.items.map((item, itemIndex) => (
+                      <li key={itemIndex} className="text-center">
+                        <span className="text-orange-500">•</span>
+                        <span className="ml-2">{item}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              ))}
+            </div>
           </div>
         </div>
       </div>

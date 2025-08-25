@@ -34,7 +34,7 @@ export default function Hero() {
 
           {/* Subheading */}
           <p className="text-xl md:text-2xl text-white/90 max-w-3xl mx-auto leading-relaxed drop-shadow-md">
-            Experience Sunset Strip where affordable escapes meets unforgettable memories.
+            Experience Sunset Strip where affordable escapes become unforgettable memories.
           </p>
 
           {/* Features */}

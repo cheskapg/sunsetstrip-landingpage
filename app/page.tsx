@@ -9,10 +9,10 @@ import Rooms from "./components/rooms";
 export default function Home() {
   return (
     <div className="min-h-screen">
-      <Navbar/>
-      <Hero/>
-      <FeaturedPhotos/>
-      <NearbyAttractions/>
+      <Navbar />
+      <Hero />
+      <FeaturedPhotos />
+      <NearbyAttractions />
       <Rooms />
       <Footer />
     </div>

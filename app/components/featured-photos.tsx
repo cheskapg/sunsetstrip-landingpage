@@ -13,7 +13,7 @@ export default function FeaturedPhotos() {
     [key: number]: number;
   }>({});
   const [hoveredCard, setHoveredCard] = useState<number | null>(null);
-  const [activeView, setActiveView] = useState<'grid' | 'sunset'>('grid');
+  const [activeView, setActiveView] = useState<"grid" | "sunset">("grid");
 
   const photos = [
     {
@@ -22,7 +22,7 @@ export default function FeaturedPhotos() {
       description:
         "Relax and enjoy a warm, calming sunset right from our restaurant.",
       imageUrl: [
-        "/assets/images/sunset skies 2.jpg",
+        "/assets/images/sunset skies 5.jpg",
         "/assets/images/sunset skies 3.jpg",
         "/assets/images/sunset yellow.jpg",
       ],
@@ -31,7 +31,7 @@ export default function FeaturedPhotos() {
     },
     {
       id: 2,
-      title: "Luxury Rooms",
+      title: "Standard Rooms",
       description:
         "Comfortable and budget-friendly rooms designed for families and couples. Simple and relaxing.",
       imageUrl: [
@@ -58,8 +58,8 @@ export default function FeaturedPhotos() {
     },
   ];
 
-  const sunsetPhotos = photos.find(p => p.id === 1);
-  const otherPhotos = photos.filter(p => p.id !== 1);
+  const sunsetPhotos = photos.find((p) => p.id === 1);
+  const otherPhotos = photos.filter((p) => p.id !== 1);
 
   const nextImage = (photoId: number, maxIndex: number) => {
     setCurrentImageIndex((prev) => ({
@@ -78,7 +78,7 @@ export default function FeaturedPhotos() {
   // Auto-cycle sunset images
   useEffect(() => {
     if (!sunsetPhotos) return;
-    
+
     const interval = setInterval(() => {
       setCurrentImageIndex((prev) => ({
         ...prev,
@@ -131,12 +131,14 @@ export default function FeaturedPhotos() {
                   {/* Badge */}
                   <div className="inline-flex items-center px-6 py-3 bg-white/10 backdrop-blur-md rounded-full mb-8 border border-white/20">
                     <PhotoIcon className="h-5 w-5 text-orange-400 mr-3" />
-                    <span className="text-white font-medium">Featured Gallery</span>
+                    <span className="text-white font-medium">
+                      Featured Gallery
+                    </span>
                   </div>
 
                   {/* Title */}
                   <h1 className="text-6xl md:text-7xl font-bold text-white mb-6 leading-tight">
-                    Breathtaking
+                    Our Breathtaking
                     <span className="bg-gradient-to-r from-orange-400 to-yellow-400 bg-clip-text text-transparent block">
                       Sunset Views
                     </span>
@@ -144,14 +146,15 @@ export default function FeaturedPhotos() {
 
                   {/* Description */}
                   <p className="text-xl text-gray-200 mb-12 leading-relaxed">
-                    Experience magical sunsets that paint the sky in brilliant colors. 
-                    Every evening brings a new masterpiece right from the resto.
+                    Experience magical sunsets that paint the sky in brilliant
+                    colors. Every evening brings a new masterpiece right from
+                    the resto.
                   </p>
 
                   {/* CTA Buttons */}
                   <div className="flex flex-col sm:flex-row gap-4">
-                    <button 
-                      onClick={() => setActiveView('grid')}
+                    <button
+                      onClick={() => setActiveView("grid")}
                       className="inline-flex items-center px-8 py-4 bg-gradient-to-r from-orange-500 to-yellow-500 text-white font-semibold rounded-xl shadow-2xl hover:shadow-orange-500/25 transition-all duration-300 transform hover:scale-105"
                     >
                       View All Photos
@@ -196,9 +199,8 @@ export default function FeaturedPhotos() {
           </>
         )}
       </div>
-
       {/* Other Photos Grid */}
-      <div className="relative z-10 bg-gradient-to-b from-transparent to-gray-900 py-20">
+      <div className="relative z-10 bg-gradient-to-b from-transparent to-gray-950 py-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           {/* Section Header */}
           <div className="text-center mb-16">
@@ -206,8 +208,8 @@ export default function FeaturedPhotos() {
               More to Discover
             </h2>
             <p className="text-xl text-gray-300 max-w-2xl mx-auto">
-              From affordable accommodations to exciting activities, 
-              explore everything that makes your stay unforgettable.
+              From affordable accommodations to exciting activities, explore
+              everything that makes your stay unforgettable.
             </p>
           </div>
 
@@ -225,12 +227,15 @@ export default function FeaturedPhotos() {
                   onMouseLeave={() => setHoveredCard(null)}
                 >
                   {/* Image Container */}
-                  <div className="aspect-[16/10] relative overflow-hidden">
+                  <div
+                    className="aspect-[16/10] relative overflow-hidden"
+                    onClick={() => nextImage(photo.id, totalImages)}
+                  >
                     <Image
                       src={photo.imageUrl[currentIndex]}
                       alt={`${photo.title} - Image ${currentIndex + 1}`}
                       fill
-                      className="object-cover transition-all duration-700 group-hover:scale-110"
+                      className="object-cover transition-all duration-700 group-hover:scale-110 cursor-pointer"
                       sizes="(max-width: 1024px) 100vw, 50vw"
                     />
 
@@ -280,7 +285,7 @@ export default function FeaturedPhotos() {
                     <p className="text-gray-300 leading-relaxed mb-4">
                       {photo.description}
                     </p>
-                    
+
                     {/* Image Indicators */}
                     {totalImages > 1 && (
                       <div className="flex space-x-2">
@@ -312,8 +317,18 @@ export default function FeaturedPhotos() {
           <div className="text-center mt-16">
             <button className="inline-flex items-center px-8 py-4 bg-gradient-to-r from-orange-500 to-yellow-500 text-white font-semibold rounded-xl shadow-2xl hover:shadow-orange-500/30 transition-all duration-300 transform hover:scale-105">
               Book Your Stay
-              <svg className="ml-2 h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+              <svg
+                className="ml-2 h-5 w-5"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M17 8l4 4m0 0l-4 4m4-4H3"
+                />
               </svg>
             </button>
           </div>

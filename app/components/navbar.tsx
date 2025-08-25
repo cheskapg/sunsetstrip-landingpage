@@ -14,7 +14,7 @@ export default function Navbar() {
     { href: "#attractions", label: "Attractions" },
     { href: "#rooms", label: "Rooms" },
     { href: "#contact", label: "Contact" },
-    { href: "#footer", label: "About" },
+    // { href: "#footer", label: "About" },
   ];
 
   const handleSmoothScroll = (

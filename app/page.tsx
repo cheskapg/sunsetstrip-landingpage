@@ -38,7 +38,7 @@ export default function Home() {
           <Contact />
         </section>
       </div>
-      
+
       {/* Footer - Outside scroll snap container for normal scrolling */}
       <div id="footer">
         <Footer />

@@ -96,14 +96,13 @@ export default function Contact() {
     "Room Reservation",
     "Event Planning",
     "Dining Reservation",
-    "Spa & Wellness",
     "Transportation",
-    "Complaint/Feedback",
+    "Feedback",
     "Other",
   ];
 
   return (
-    <section className="min-h-screen bg-gradient-to-br from-gray-50 to-gray-100 py-16 px-4 sm:px-6 lg:px-8">
+    <section className="min-h-screen bg-gradient-to-br from-gray-50 to-gray-100 pb-16 px-4 sm:px-6 lg:px-8">
       <div className="max-w-7xl mx-auto">
         {/* Header */}
         <div className="text-center mb-16">
@@ -149,18 +148,6 @@ export default function Contact() {
                     </div>
                   </div>
                 ))}
-              </div>
-            </div>
-
-            {/* Map Placeholder */}
-            <div className="bg-white rounded-xl p-6 shadow-md">
-              <h4 className="font-semibold text-gray-900 mb-4">Location</h4>
-              <div className="aspect-video bg-gray-200 rounded-lg flex items-center justify-center">
-                <div className="text-center">
-                  <MapPinIcon className="h-12 w-12 text-gray-400 mx-auto mb-2" />
-                  <p className="text-gray-500 text-sm">Interactive Map</p>
-                  <p className="text-gray-400 text-xs">Coming Soon</p>
-                </div>
               </div>
             </div>
           </div>
@@ -317,6 +304,37 @@ export default function Contact() {
                   </div>
                 )}
               </form>
+            </div>
+          </div>
+
+          {/* Google Map */}
+          <div className="col-span-1 lg:col-span-3 bg-white rounded-xl p-6 shadow-md">
+            <h4 className="font-semibold text-gray-900 mb-4">Our Location</h4>
+            <div className="h-64 rounded-lg overflow-hidden">
+              <iframe
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3931.6957314171345!2d123.34617997527003!3d9.791792076582269!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x33ab951ed89f446b%3A0x6155af2e4488c961!2sSunset%20Strip%20Beach%20Resort!5e0!3m2!1sen!2sph!4v1756125670625!5m2!1sen!2sph"
+                width="100%"
+                height="100%"
+                style={{ border: 0 }}
+                allowFullScreen
+                loading="lazy"
+                referrerPolicy="no-referrer-when-downgrade"
+                className="rounded-lg"
+                title="Sunset Strip Beach Resort Location"
+              />
+            </div>
+            <div className="mt-4 flex items-center justify-between">
+              <p className="text-gray-600 text-sm">
+                Purok 3, Tambis, Sangi, Madridejos, Alegria, Cebu 8030 Philippines
+              </p>
+              <a
+                href="https://maps.google.com/?q=Sunset+Strip+Beach+Resort"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-orange-600 hover:text-orange-700 text-sm font-medium transition-colors duration-200"
+              >
+                View in Google Maps →
+              </a>
             </div>
           </div>
         </div>

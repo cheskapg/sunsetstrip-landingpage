@@ -25,21 +25,56 @@ export default function Navbar() {
     setIsMenuOpen(false);
   }, []);
 
+  // Prevent body scroll when sidebar is open
+  useEffect(() => {
+    if (isMenuOpen) {
+      // Store original styles
+      const originalOverflow = document.body.style.overflow;
+      const originalTouchAction = document.body.style.touchAction;
+
+      // Prevent background scroll
+      document.body.style.overflow = "hidden";
+      document.body.style.touchAction = "none";
+
+      return () => {
+        // Restore original styles
+        document.body.style.overflow = originalOverflow;
+        document.body.style.touchAction = originalTouchAction;
+      };
+    }
+  }, [isMenuOpen]);
+
   // Add swipe gesture handlers
   useEffect(() => {
     const sidebar = sidebarRef.current;
-    if (!sidebar) return;
+    if (!sidebar || !isMenuOpen) return;
+
+    let isDragging = false;
 
     const handleTouchStart = (e: TouchEvent) => {
+      // Ensure this touch is within the sidebar
+      const rect = sidebar.getBoundingClientRect();
+      if (
+        e.touches[0].clientX < rect.left ||
+        e.touches[0].clientX > rect.right
+      ) {
+        return;
+      }
+
+      isDragging = true;
       startXRef.current = e.touches[0].clientX;
       currentXRef.current = e.touches[0].clientX;
+      sidebar.style.transition = "none"; // Disable transition during drag
     };
 
     const handleTouchMove = (e: TouchEvent) => {
+      if (!isDragging) return;
+
       e.preventDefault();
+      e.stopPropagation();
       currentXRef.current = e.touches[0].clientX;
       const diff = currentXRef.current - startXRef.current;
-      
+
       // Only allow swiping to the right (closing)
       if (diff > 0) {
         const translateX = Math.min(diff, 320); // 320px is sidebar width
@@ -47,29 +82,34 @@ export default function Navbar() {
       }
     };
 
-    const handleTouchEnd = () => {
+    const handleTouchEnd = (e: TouchEvent) => {
+      if (!isDragging) return;
+
+      isDragging = false;
       const diff = currentXRef.current - startXRef.current;
-      
-      // If swiped more than 100px to the right, close the menu
-      if (diff > 100) {
+
+      // Reset transition
+      sidebar.style.transition = "";
+      sidebar.style.transform = "";
+
+      // If swiped more than 80px to the right, close the menu
+      if (diff > 80) {
         setIsMenuOpen(false);
       }
-      
-      // Reset transform
-      sidebar.style.transform = '';
     };
 
-    if (isMenuOpen) {
-      sidebar.addEventListener('touchstart', handleTouchStart, { passive: false });
-      sidebar.addEventListener('touchmove', handleTouchMove, { passive: false });
-      sidebar.addEventListener('touchend', handleTouchEnd);
-      
-      return () => {
-        sidebar.removeEventListener('touchstart', handleTouchStart);
-        sidebar.removeEventListener('touchmove', handleTouchMove);
-        sidebar.removeEventListener('touchend', handleTouchEnd);
-      };
-    }
+    // Add event listeners with passive: false to prevent default
+    sidebar.addEventListener("touchstart", handleTouchStart, {
+      passive: false,
+    });
+    sidebar.addEventListener("touchmove", handleTouchMove, { passive: false });
+    sidebar.addEventListener("touchend", handleTouchEnd, { passive: false });
+
+    return () => {
+      sidebar.removeEventListener("touchstart", handleTouchStart);
+      sidebar.removeEventListener("touchmove", handleTouchMove);
+      sidebar.removeEventListener("touchend", handleTouchEnd);
+    };
   }, [isMenuOpen]);
 
   const navLinks = [
@@ -113,7 +153,9 @@ export default function Navbar() {
   return (
     <>
       {/* Top Bar with Logo and Menu Button */}
-      <nav className={`fixed top-0 left-0 right-0 z-40 lg:blur-effect lg:bg-black/30 lg:backdrop-blur-xs `}>
+      <nav
+        className={`fixed top-0 left-0 right-0 z-40 lg:blur-effect lg:bg-black/30 lg:backdrop-blur-xs `}
+      >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center h-16 sm:h-20">
             {/* Logo */}
@@ -179,19 +221,47 @@ export default function Navbar() {
       {isMenuOpen && (
         <div
           className="fixed inset-0 bg-black/50 backdrop-blur-sm z-40 transition-opacity duration-300"
-          onClick={() => setIsMenuOpen(false)}
-          onTouchStart={() => setIsMenuOpen(false)}
+          onClick={(e) => {
+            // Only close if clicking directly on the overlay (not propagated from sidebar)
+            if (e.target === e.currentTarget) {
+              setIsMenuOpen(false);
+            }
+          }}
         />
       )}
 
       {/* Right Sidebar */}
       <div
         ref={sidebarRef}
-        className={`fixed top-0 right-0 h-full w-80 bg-white shadow-2xl z-50 transform transition-transform duration-300 ease-in-out ${
+        className={`fixed top-0 right-0 h-full w-80 bg-white shadow-2xl z-50 transform transition-transform duration-300 ease-in-out overflow-y-auto ${
           isMenuOpen ? "translate-x-0" : "translate-x-full"
         }`}
-        style={{ touchAction: isMenuOpen ? 'pan-x' : 'none' }}
+        style={{
+          touchAction: "pan-y pan-x",
+          userSelect: "none",
+          WebkitUserSelect: "none",
+        }}
+        onTouchStart={(e) => {
+          // Prevent event bubbling to overlay
+          e.stopPropagation();
+        }}
+        onTouchMove={(e) => {
+          // Prevent event bubbling to overlay
+          e.stopPropagation();
+        }}
+        onTouchEnd={(e) => {
+          // Prevent event bubbling to overlay
+          e.stopPropagation();
+        }}
       >
+        {/* Swipe Indicator */}
+        <div className="lg:hidden flex justify-center pt-3 pb-2 border-b border-gray-100">
+          <div className="w-12 h-1 bg-gray-300 rounded-full"></div>
+          <span className="absolute mt-3 text-xs text-gray-400">
+            Swipe right to close
+          </span>
+        </div>
+
         {/* Sidebar Header */}
         <div className="flex items-center justify-between p-6 border-b border-gray-200">
           <div className="flex-1 flex items-center">

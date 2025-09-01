@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import {
@@ -16,6 +16,61 @@ import {
 
 export default function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const sidebarRef = useRef<HTMLDivElement>(null);
+  const startXRef = useRef<number>(0);
+  const currentXRef = useRef<number>(0);
+
+  // Prevent auto-opening on Android/mobile
+  useEffect(() => {
+    setIsMenuOpen(false);
+  }, []);
+
+  // Add swipe gesture handlers
+  useEffect(() => {
+    const sidebar = sidebarRef.current;
+    if (!sidebar) return;
+
+    const handleTouchStart = (e: TouchEvent) => {
+      startXRef.current = e.touches[0].clientX;
+      currentXRef.current = e.touches[0].clientX;
+    };
+
+    const handleTouchMove = (e: TouchEvent) => {
+      e.preventDefault();
+      currentXRef.current = e.touches[0].clientX;
+      const diff = currentXRef.current - startXRef.current;
+      
+      // Only allow swiping to the right (closing)
+      if (diff > 0) {
+        const translateX = Math.min(diff, 320); // 320px is sidebar width
+        sidebar.style.transform = `translateX(${translateX}px)`;
+      }
+    };
+
+    const handleTouchEnd = () => {
+      const diff = currentXRef.current - startXRef.current;
+      
+      // If swiped more than 100px to the right, close the menu
+      if (diff > 100) {
+        setIsMenuOpen(false);
+      }
+      
+      // Reset transform
+      sidebar.style.transform = '';
+    };
+
+    if (isMenuOpen) {
+      sidebar.addEventListener('touchstart', handleTouchStart, { passive: false });
+      sidebar.addEventListener('touchmove', handleTouchMove, { passive: false });
+      sidebar.addEventListener('touchend', handleTouchEnd);
+      
+      return () => {
+        sidebar.removeEventListener('touchstart', handleTouchStart);
+        sidebar.removeEventListener('touchmove', handleTouchMove);
+        sidebar.removeEventListener('touchend', handleTouchEnd);
+      };
+    }
+  }, [isMenuOpen]);
 
   const navLinks = [
     { href: "#hero", label: "Home", icon: HomeIcon },
@@ -99,9 +154,14 @@ export default function Navbar() {
               </Link>
               {/* Menu Toggle Button - Hidden on desktop, shown on sm-md */}
               <button
-                onClick={() => setIsMenuOpen(!isMenuOpen)}
+                onClick={(e) => {
+                  e.preventDefault();
+                  e.stopPropagation();
+                  setIsMenuOpen(!isMenuOpen);
+                }}
                 className="lg:hidden inline-flex items-center justify-center p-3 rounded-lg bg-white/10 backdrop-blur-sm text-white hover:bg-white/20 focus:outline-none focus:ring-2 focus:ring-orange-500 transition-all duration-300"
                 aria-expanded={isMenuOpen}
+                type="button"
               >
                 <span className="sr-only">Open menu</span>
                 {!isMenuOpen ? (
@@ -120,14 +180,17 @@ export default function Navbar() {
         <div
           className="fixed inset-0 bg-black/50 backdrop-blur-sm z-40 transition-opacity duration-300"
           onClick={() => setIsMenuOpen(false)}
+          onTouchStart={() => setIsMenuOpen(false)}
         />
       )}
 
       {/* Right Sidebar */}
       <div
+        ref={sidebarRef}
         className={`fixed top-0 right-0 h-full w-80 bg-white shadow-2xl z-50 transform transition-transform duration-300 ease-in-out ${
           isMenuOpen ? "translate-x-0" : "translate-x-full"
         }`}
+        style={{ touchAction: isMenuOpen ? 'pan-x' : 'none' }}
       >
         {/* Sidebar Header */}
         <div className="flex items-center justify-between p-6 border-b border-gray-200">
@@ -141,11 +204,21 @@ export default function Navbar() {
             />
           </div>
           <button
-            onClick={() => setIsMenuOpen(false)}
+            onClick={(e) => {
+              e.preventDefault();
+              e.stopPropagation();
+              setIsMenuOpen(false);
+            }}
             className="p-2 rounded-lg hover:bg-gray-100 transition-colors duration-200 ml-4 flex-shrink-0"
+            type="button"
           >
             <XMarkIcon className="h-6 w-6 text-gray-600" />
           </button>
+        </div>
+
+        {/* Swipe Indicator */}
+        <div className="lg:hidden flex justify-center pt-2 pb-4">
+          <div className="w-12 h-1 bg-gray-300 rounded-full"></div>
         </div>
 
         {/* Navigation Links */}
